@@ -430,6 +430,7 @@ async function callImink(
       "Content-Type": "application/json",
       "X-znca-Platform": "Android",
       "X-znca-Version": NSOAPP_VERSION,
+      "X-znca-Client-Version": NSOAPP_VERSION,
     },
     body: JSON.stringify({
       "token": idToken,
