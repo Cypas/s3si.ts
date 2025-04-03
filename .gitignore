@@ -4,3 +4,10 @@ export/
 cache/
 .DS_Store
 /*.json
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/s3si.ts.iml
+/.idea/vcs.xml

@@ -423,21 +423,33 @@ async function callImink(
 ): Promise<IminkResponse> {
   const { fApi, step, idToken, userId, coralUserId, env } = params;
   const { post } = env.newFetcher();
-  const resp = await post({
-    url: fApi,
-    headers: {
+  const header = {
       "User-Agent": USERAGENT,
       "Content-Type": "application/json",
       "X-znca-Platform": "Android",
       "X-znca-Version": NSOAPP_VERSION,
       "X-znca-Client-Version": NSOAPP_VERSION,
-    },
-    body: JSON.stringify({
-      "token": idToken,
-      "hash_method": step,
-      "na_id": userId,
-      "coral_user_id": coralUserId,
-    }),
+    }
+  let body: object;
+  if (step == 2 && coralUserId !=""){
+        body ={
+          "token": idToken,
+          "hash_method": step,
+          "na_id": userId,
+          "coral_user_id": coralUserId,
+      }
+      }else{
+        body ={
+          "token": idToken,
+          "hash_method": step,
+          "na_id": userId,
+        }
+      }
+
+  const resp = await post({
+    url: fApi,
+    headers: header,
+    body: JSON.stringify(body),
   });
 
   return await resp.json();
